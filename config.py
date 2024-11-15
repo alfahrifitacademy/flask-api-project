@@ -1,4 +1,3 @@
-import os
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 
@@ -8,11 +7,8 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    # Konfigurasi database menggunakan variabel lingkungan dari Railway
-    app.config['SQLALCHEMY_DATABASE_URI'] = (
-        f"mysql+mysqlconnector://{os.getenv('MYSQLUSER')}:{os.getenv('MYSQL_ROOT_PASSWORD')}"
-        f"@{os.getenv('MYSQLHOST')}:{os.getenv('MYSQLPORT')}/{os.getenv('MYSQLDATABASE')}"
-    )
+    # Konfigurasi database (gunakan nama db_movie)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://dbmovie_condition:3e8298c113c4e068502e9b52853c33f80e3b9dea@e6-t9.h.filess.io:3307/dbmovie_condition'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Inisialisasi SQLAlchemy dengan aplikasi
